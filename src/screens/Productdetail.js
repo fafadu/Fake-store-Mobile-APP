@@ -5,8 +5,10 @@ import { useNavigation } from '@react-navigation/native';
 import { View, Text, TouchableOpacity, StyleSheet, FlatList,ActivityIndicator,Image,ScrollView } from 'react-native';
 import colors from '../constants/colors';
 import { Button } from '../coponents/Button';
+
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../store/cartSlice';
+import { fetchProductById } from '../services/apiServices';
 
 export const Productdetail = () => {
     const route = useRoute();
@@ -18,21 +20,18 @@ export const Productdetail = () => {
     const { id } = route.params;  // route.params 包含了传递给该屏幕的所有参数
   
     useEffect(() => {
-      const fetchProduct = async () => {
-        setLoading(true);
+      const getProduct = async () => {
         try {
-          const response = await fetch(`https://fakestoreapi.com/products/${id}`);
-          const data = await response.json();
-          console.log(data)
-          setProduct(data);
+            const data = await fetchProductById(id);
+            setProduct(data);
+            setLoading(false);
         } catch (error) {
-          console.error(error);
-        } finally {
-          setLoading(false);
+            setLoading(false);
+            console.error(error);
         }
       };
-  
-      fetchProduct();
+
+      getProduct();
     }, [id]);
 
     const handleAddToCart = () => {

@@ -1,5 +1,3 @@
-
-
 // src/screens/Cart.js
 import React from 'react';
 import { View, Text, FlatList, TouchableOpacity, StyleSheet, Image } from 'react-native';
@@ -29,15 +27,27 @@ export const Cart = () => {
     </View>
   );
 
+  const renderEmptyContainer = () => (
+    <View style={styles.emptyContainer}>
+      <Text style={styles.emptyText}>Your shopping cart is empty</Text>
+    </View>
+  );
+
+
   return (
     <View style={styles.container}>
       <FlatList
         data={cart.items}
         renderItem={renderItem}
         keyExtractor={item => item.id.toString()}
+        ListEmptyComponent={renderEmptyContainer}  // This will render when the list is empty
       />
-      <Text style={styles.summaryText}>Total Items: {cart.totalItems}</Text>
-      <Text style={styles.summaryText}>Total Price: ${cart.totalPrice.toFixed(2)}</Text>
+      {cart.items.length > 0 && (
+        <>
+          <Text style={styles.summaryText}>Total Items: {cart.totalItems}</Text>
+          <Text style={styles.summaryText}>Total Price: ${cart.totalPrice.toFixed(2)}</Text>
+        </>
+      )}
     </View>
   );
 };
@@ -46,6 +56,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 10,
+    marginTop: 15,
   },
   itemContainer: {
     flexDirection: 'row',
@@ -87,5 +98,14 @@ const styles = StyleSheet.create({
     fontSize: 18,
     textAlign: 'center',
     marginTop: 10,
+  },
+  emptyContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 200,  // Adjust this value as needed
+  },
+  emptyText: {
+    fontSize: 20,
   },
 });
