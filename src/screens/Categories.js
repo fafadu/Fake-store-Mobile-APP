@@ -5,7 +5,7 @@ import { useNavigation } from '@react-navigation/native';
 import { useEffect, useState } from 'react';
 import colors from '../constants/colors';
 import { fetchCategories } from '../services/apiServices';
-
+import { capitalizeFirstLetter } from '../utils/stringUtils';
 
 export const Categories = () => {
 
@@ -39,7 +39,7 @@ export const Categories = () => {
         
       }}
     >
-      <Text style={styles.title}>{item.title}</Text>
+      <Text style={styles.title}>{capitalizeFirstLetter(item.title)}</Text>
     </TouchableOpacity>
   );
 
@@ -89,6 +89,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 18,
+    fontWeight: 'bold',
   },
 });
 

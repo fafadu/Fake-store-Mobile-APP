@@ -1,9 +1,11 @@
 // src/screens/Cart.js
 import React from 'react';
 import { View, Text, FlatList, TouchableOpacity, StyleSheet, Image } from 'react-native';
+import colors from '../constants/colors';
 import { useSelector, useDispatch } from 'react-redux';
-
+import { Button } from '../coponents/Button';
 import { removeFromCart, addToCart } from '../store/cartSlice';
+
 export const Cart = () => {
   const cart = useSelector(state => state.cart);
   const dispatch = useDispatch();
@@ -36,6 +38,10 @@ export const Cart = () => {
 
   return (
     <View style={styles.container}>
+    
+      <View style={styles.cartTitle}>
+        <Text style={styles.cartTitleText}>Shopping cart</Text>
+      </View>
       <FlatList
         data={cart.items}
         renderItem={renderItem}
@@ -107,5 +113,17 @@ const styles = StyleSheet.create({
   },
   emptyText: {
     fontSize: 20,
+  },
+  cartTitle: {
+    marginHorizontal: 16,
+    padding: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: colors.grey, // 或者选择其他背景颜色
+  },
+  cartTitleText: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: colors.black,
   },
 });
