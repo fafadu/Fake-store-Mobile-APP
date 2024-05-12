@@ -1,3 +1,4 @@
+//Productlist.js
 import React, { useState, useEffect } from 'react';
 import { useRoute } from '@react-navigation/native';
 import { useNavigation } from '@react-navigation/native';

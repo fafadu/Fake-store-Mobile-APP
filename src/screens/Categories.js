@@ -4,11 +4,6 @@ import { useNavigation } from '@react-navigation/native';
 import { useEffect, useState } from 'react';
 import colors from '../constants/colors';
 
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'; 
-import { Cart } from './Cart';
-
-const Tabs = createBottomTabNavigator();
-
 export const Categories = () => {
 
   const navigation = useNavigation();

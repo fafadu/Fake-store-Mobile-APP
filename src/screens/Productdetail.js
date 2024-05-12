@@ -1,14 +1,17 @@
+//Productdetail.js
 import React, { useState, useEffect } from 'react';
 import { useRoute } from '@react-navigation/native';
 import { useNavigation } from '@react-navigation/native';
 import { View, Text, TouchableOpacity, StyleSheet, FlatList,ActivityIndicator,Image,ScrollView } from 'react-native';
 import colors from '../constants/colors';
 import { Button } from '../coponents/Button';
-
+import { useDispatch } from 'react-redux';
+import { addToCart } from '../store/cartSlice';
 
 export const Productdetail = () => {
     const route = useRoute();
     const navigation = useNavigation();
+    const dispatch = useDispatch();
   
     const [product, setProduct] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -30,7 +33,13 @@ export const Productdetail = () => {
       };
   
       fetchProduct();
-    }, []);
+    }, [id]);
+
+    const handleAddToCart = () => {
+      dispatch(addToCart({ ...product, quantity: 1 })); // 假设每次添加1个
+      ;
+    };
+
   
     return (
       <View style={styles.container}>
@@ -58,7 +67,7 @@ export const Productdetail = () => {
           <Button 
             title="Add to Cart" 
             iconName="cart" // 修改为你的购物车图标名称
-            onPress={() => console.log('Add to cart pressed')} // 这里实现添加到购物车的逻辑
+            onPress={handleAddToCart}  // 这里实现添加到购物车的逻辑
           />
         </View>
   
