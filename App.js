@@ -6,9 +6,13 @@
 import { NavigationContainer } from "@react-navigation/native"
 import { createStackNavigator } from "@react-navigation/stack";
 import {Categories} from "./src/screens/Categories";
+import { Cart } from "./src/screens/Cart";
 import {Productlist} from "./src/screens/Productlist";
 import { Productdetail } from "./src/screens/Productdetail";
- 
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+
+
+
 const Stack = createStackNavigator()
 export default function App() {
   return (

@@ -4,6 +4,10 @@ import { useNavigation } from '@react-navigation/native';
 import { useEffect, useState } from 'react';
 import colors from '../constants/colors';
 
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'; 
+import { Cart } from './Cart';
+
+const Tabs = createBottomTabNavigator();
 
 export const Categories = () => {
 
@@ -46,6 +50,7 @@ export const Categories = () => {
   );
 
   return (
+    
     <View style={styles.container}>
       {loading ? (
         <ActivityIndicator size="large" color={colors.darkBlue} />
