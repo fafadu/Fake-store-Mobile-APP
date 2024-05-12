@@ -4,26 +4,40 @@
 // import * as SplashScreen from 'expo-splash-screen';
 
 import { NavigationContainer } from "@react-navigation/native"
-import { createStackNavigator } from "@react-navigation/stack";
-import {Categories} from "./src/screens/Categories";
 import { Cart } from "./src/screens/Cart";
-import {Productlist} from "./src/screens/Productlist";
-import { Productdetail } from "./src/screens/Productdetail";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import ProductStack from "./src/navigation/ProductStack";
 
 
 
-const Stack = createStackNavigator()
+
+const Tab = createBottomTabNavigator()
+
+
+
 export default function App() {
   return (
-  <NavigationContainer>
-     <Stack.Navigator>
-     <Stack.Screen name="Categories" component={Categories} />
-     <Stack.Screen name="Productlist" component={Productlist} />
-     <Stack.Screen name="Productdetail" component={Productdetail} />
-     </Stack.Navigator>
 
-  </NavigationContainer>
+
+  <NavigationContainer>
+      <Tab.Navigator>
+        <Tab.Screen 
+          name="Products" 
+          component={ProductStack} 
+          options={{
+            tabBarLabel: 'Products',
+            // tabBarIcon: ({ color, size }) => (<MaterialIcons name="category" size={size} color={color} />)
+          }}
+        />
+        <Tab.Screen 
+          name="Cart" 
+          component={Cart} 
+          options={{
+            tabBarLabel: 'My Cart',
+            // tabBarIcon: ({ color, size }) => (<MaterialIcons name="shopping-cart" size={size} color={color} />)
+          }}
+        />
+      </Tab.Navigator>
+    </NavigationContainer>
   );
 }
-
