@@ -56,6 +56,7 @@ export const Categories = () => {
           contentContainerStyle={styles.listContainer}
         />
       )}
+      <Text>Jinghwa Tu</Text>
     </View>
   );
 };
@@ -93,3 +94,4 @@ const styles = StyleSheet.create({
   },
 });
 
+export default Categories;
